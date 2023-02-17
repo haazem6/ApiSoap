@@ -16,9 +16,9 @@ $client = new SoapClient('http://localhost/apiisoap/server.php?wsdl', ['trace' =
 // Call the "get_data" method
 $column = 'user';
 $response = $client->getData($column);
-
+$response2 = $client->insertData($column);
 // Decode the JSON-encoded response
-$result = json_encode($response);
+//$result = json_encode($response);
 
 // Output the result
 //var_dump($response);

@@ -20,6 +20,22 @@
       <xsd:element name="getDataResponse">
         <xsd:complexType>
           <xsd:sequence>
+            <xsd:element name="data" type="xsd:array" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="insertDataRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:integer" />
+            <xsd:element name="name" type="xsd:string" />
+            <xsd:element name="email" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="insertDataResponse">
+        <xsd:complexType>
+          <xsd:sequence>
             <xsd:element name="data" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
@@ -27,19 +43,30 @@
     </xsd:schema>
   </wsdl:types>
 
-
   <wsdl:message name="getDataRequest">
-    <wsdl:part name="getDataRequest" type="xsd:getDataRequest"></wsdl:part>
+    <wsdl:part name="table" type="xsd:getDataRequest"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="getDataResponse">
     <wsdl:part name="result" type="xsd:array"></wsdl:part>
   </wsdl:message>
 
+  <wsdl:message name="insertDataRequest">
+    <wsdl:part name="id" type="xsd:integer"></wsdl:part>
+    <wsdl:part name="name" type="xsd:insertDataRequest"></wsdl:part>
+     <wsdl:part name="email" type="xsd:insertDataRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="insertDataResponse">
+    <wsdl:part name="result" type="xsd:string"></wsdl:part>
+  </wsdl:message>
 
   <wsdl:portType name="Library">
     <wsdl:operation name="getData">
       <wsdl:input message="tns:getDataRequest" />
       <wsdl:output message="tns:getDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="insertData">
+      <wsdl:input message="tns:insertDataRequest" />
+      <wsdl:output message="tns:insertDataResponse" />
     </wsdl:operation>
   </wsdl:portType>
 
@@ -47,6 +74,15 @@
     <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="getData">
       <soap:operation soapAction="http://localhost/ApiiSoap/server.php#getData" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="Library" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="Library" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertData">
+      <soap:operation soapAction="http://localhost/ApiiSoap/server.php#insertData" />
       <wsdl:input>
         <soap:body use="literal" namespace="Library" />
       </wsdl:input>
