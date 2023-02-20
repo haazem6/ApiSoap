@@ -10,6 +10,20 @@
 
   <wsdl:types>
     <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="Library">
+    <xsd:element name="deleteDataRequest">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:integer" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="deleteDataResponse">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:element>
       <xsd:element name="getDataRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -43,6 +57,14 @@
     </xsd:schema>
   </wsdl:types>
 
+  <wsdl:message name="deleteDataRequest">
+    <wsdl:part name="id" type="xsd:integer"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDataResponse">
+    <wsdl:part name="result" type="xsd:string"></wsdl:part>
+  </wsdl:message>
+
+
   <wsdl:message name="getDataRequest">
     <wsdl:part name="table" type="xsd:getDataRequest"></wsdl:part>
   </wsdl:message>
@@ -60,6 +82,10 @@
   </wsdl:message>
 
   <wsdl:portType name="Library">
+    <wsdl:operation name="deleteData">
+      <wsdl:input message="tns:deleteDataRequest" />
+      <wsdl:output message="tns:deleteDataResponse" />
+    </wsdl:operation>
     <wsdl:operation name="getData">
       <wsdl:input message="tns:getDataRequest" />
       <wsdl:output message="tns:getDataResponse" />
@@ -72,6 +98,15 @@
 
   <wsdl:binding name="Library" type="tns:Library">
     <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="deleteData">
+      <soap:operation soapAction="http://localhost/ApiiSoap/server.php#deleteData" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="Library" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="Library" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="getData">
       <soap:operation soapAction="http://localhost/ApiiSoap/server.php#getData" />
       <wsdl:input>
