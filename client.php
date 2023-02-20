@@ -14,9 +14,14 @@ $options = array(
 $client = new SoapClient('http://localhost/apiisoap/server.php?wsdl', ['trace' => 1, 'cache_wsdl' => WSDL_CACHE_NONE]);
 
 // Call the "get_data" method
-$column = 'user';
-$response = $client->getData($column);
-$response2 = $client->insertData($column);
+$table = 'user';
+$response = $client->getData($table);
+if($response)
+return 'true';
+else{
+    return 'false';
+}
+//$response2 = $client->insertData($column);
 // Decode the JSON-encoded response
 //$result = json_encode($response);
 

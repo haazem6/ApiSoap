@@ -44,31 +44,32 @@ function insertData($id, $name, $email)
 
     return true;
 }
-function deleteData($id){
-      // Connect to the Postgres database
-      $host = 'localhost';
-      $username = 'postgres';
-      $password = 'system';
-      $dbname = 'mysoapapi';
-      $conn = pg_connect("host=$host dbname=$dbname user=$username password=$password");
-      if (!$conn) {
+function deleteData($id)
+{
+    // Connect to the Postgres database
+    $host = 'localhost';
+    $username = 'postgres';
+    $password = 'system';
+    $dbname = 'mysoapapi';
+    $conn = pg_connect("host=$host dbname=$dbname user=$username password=$password");
+    if (!$conn) {
         throw new SoapFault('Server', 'Unable to connect to database');
     }
-       // Build the SQL query
-      $query = "DELETE FROM public.user WHERE id = $id";
-      $result = pg_query($conn,$query);
-        
-      // check if the delete operation was successful
-      if ($result) {
-          return "Success";
-      } else {
-          return "Error" .pg_last_error($conn);
-      }
-      
-      // close the database connection
-      pg_close($conn);
-  }
-  
+    // Build the SQL query
+    $query = "DELETE FROM public.user WHERE id = $id";
+    $result = pg_query($conn, $query);
+
+    // check if the delete operation was successful
+    if ($result) {
+        return "Success";
+    } else {
+        return "Error" . pg_last_error($conn);
+    }
+
+    // close the database connection
+    pg_close($conn);
+}
+
 
 
 $server = new SoapServer("file.wsdl");

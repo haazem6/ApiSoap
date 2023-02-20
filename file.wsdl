@@ -10,20 +10,20 @@
 
   <wsdl:types>
     <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="Library">
-    <xsd:element name="deleteDataRequest">
-      <xsd:complexType>
-        <xsd:sequence>
-          <xsd:element name="id" type="xsd:integer" />
-        </xsd:sequence>
-      </xsd:complexType>
-    </xsd:element>
-    <xsd:element name="deleteDataResponse">
-      <xsd:complexType>
-        <xsd:sequence>
-          <xsd:element name="result" type="xsd:string" />
-        </xsd:sequence>
-      </xsd:complexType>
-    </xsd:element>
+      <xsd:element name="deleteDataRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:integer" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteDataResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="getDataRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -75,7 +75,7 @@
   <wsdl:message name="insertDataRequest">
     <wsdl:part name="id" type="xsd:integer"></wsdl:part>
     <wsdl:part name="name" type="xsd:insertDataRequest"></wsdl:part>
-     <wsdl:part name="email" type="xsd:insertDataRequest"></wsdl:part>
+    <wsdl:part name="email" type="xsd:insertDataRequest"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="insertDataResponse">
     <wsdl:part name="result" type="xsd:string"></wsdl:part>
